@@ -9,10 +9,10 @@ module Concurrent.Queue
 
 import Prelude
 
+import Data.Maybe (Maybe(..))
 import Effect.Aff (Aff)
 import Effect.Aff.AVar (AVar)
 import Effect.Aff.AVar as AVar
-import Data.Maybe (Maybe(..))
 
 -- | An unbounded Queue fit for concurrent access.
 newtype Queue a = Queue

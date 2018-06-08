@@ -4,10 +4,10 @@ import Prelude
 
 import Concurrent.BoundedQueue as BQ
 import Control.Alt ((<|>))
-import Effect.Aff (Aff, Milliseconds(..), delay, forkAff, parallel, sequential)
 import Data.Either (Either(..), isLeft, isRight)
 import Data.Int (toNumber)
 import Data.Maybe (Maybe(..), isNothing)
+import Effect.Aff (Aff, Milliseconds(..), delay, forkAff, parallel, sequential)
 import Test.Unit (TestSuite, suite, test)
 import Test.Unit.Assert as Assert
 

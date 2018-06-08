@@ -14,12 +14,12 @@ module Concurrent.BoundedQueue
 
 import Prelude
 
-import Effect.Aff (Aff)
-import Effect.Aff.AVar (AVar)
-import Effect.Aff.AVar as AVar
 import Data.Array (unsafeIndex)
 import Data.Maybe (Maybe(..))
 import Data.Unfoldable (replicateA)
+import Effect.Aff (Aff)
+import Effect.Aff.AVar (AVar)
+import Effect.Aff.AVar as AVar
 import Partial.Unsafe (unsafePartial)
 
 newtype BoundedQueue a =
