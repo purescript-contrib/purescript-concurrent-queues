@@ -4,21 +4,20 @@ import Prelude
 
 import Concurrent.BoundedQueue as BQ
 import Control.Alt ((<|>))
-import Control.Monad.Aff (Aff, Milliseconds(..), delay, forkAff, parallel, sequential)
-import Control.Monad.Aff.AVar (AVAR)
 import Data.Either (Either(..), isLeft, isRight)
 import Data.Int (toNumber)
 import Data.Maybe (Maybe(..), isNothing)
+import Effect.Aff (Aff, Milliseconds(..), delay, forkAff, parallel, sequential)
 import Test.Unit (TestSuite, suite, test)
 import Test.Unit.Assert as Assert
 
-race ∷ ∀ a b e. Aff e a → Aff e b → Aff e (Either a b)
+race ∷ ∀ a b. Aff a → Aff b → Aff (Either a b)
 race a b = sequential ((parallel (map Left a)) <|> (parallel (map Right b)))
 
-delayMs ∷ ∀ e. Int → Aff e Unit
+delayMs ∷ Int → Aff Unit
 delayMs = delay <<< Milliseconds <<< toNumber
 
-boundedQueueSuite ∷ ∀ e. TestSuite (avar ∷ AVAR | e)
+boundedQueueSuite ∷ TestSuite
 boundedQueueSuite = do
   suite "Simple operations" do
     test "inserting and popping elements" do
