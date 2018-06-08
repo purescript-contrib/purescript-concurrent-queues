@@ -12,10 +12,9 @@
     "output"
   ],
   "dependencies": {
-    "purescript-aff": "^4.0.2"
+    "purescript-psci-support": "^4.0.0",
+    "purescript-test-unit": "^14.0.0",
+    "purescript-aff": "^5.0.0"
   },
-  "devDependencies": {
-    "purescript-psci-support": "^3.0.0",
-    "purescript-test-unit": "^13.0.0"
-  }
+  "devDependencies": {}
 }
