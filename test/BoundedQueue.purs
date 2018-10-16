@@ -93,13 +93,15 @@ boundedQueueSyncSuite :: TestSuite
 boundedQueueSyncSuite = do
   suite "(Sync) Simple operations" do
     test "(Sync) inserting and popping elements" do
-      q ← liftEffect (BQS.new 2)
-      BQ.write q 1
-      BQ.write q 2
-      r1 ← BQ.read q
-      r2 ← BQ.read q
-      Assert.equal r1 1
-      Assert.equal r2 2
+      Tuple r1 r2 ← liftEffect do
+        q ← liftEffect (BQS.new 2)
+        _ ← BQS.tryWrite q 1
+        _ ← BQS.tryWrite q 2
+        r1 ← BQS.tryRead q
+        r2 ← BQS.tryRead q
+        pure (Tuple r1 r2)
+      Assert.equal r1 (Just 1)
+      Assert.equal r2 (Just 2)
   suite "(Sync) Blocking and unblocking" do
     test "(Sync) writing more than the allowed capacity blocks" do
       q ← liftEffect (BQS.new 1)
@@ -119,9 +121,9 @@ boundedQueueSyncSuite = do
         BQS.isEmpty q
       Assert.assert "" r
     test "(Sync) an empty queue with blocked readers is empty" do
-      q ← BQ.new 1
+      q ← liftEffect (BQS.new 1)
       _ ← forkAff (BQ.read q)
-      r ← BQ.isEmpty q
+      r ← liftEffect (BQS.isEmpty q)
       Assert.assert "" r
   suite "(Sync) tryRead blocking and unblocking" do
     test "(Sync) tryRead is non-blocking for empty queue" do
@@ -151,9 +153,9 @@ boundedQueueSyncSuite = do
       r ← liftEffect (BQS.tryWrite q 2)
       Assert.assertFalse "Write should've failed" r
     test "(Sync) tryWrite writes to a non-full queue" do
-      Tuple q rw ← do
-        q ← BQ.new 1
-        rw ← BQ.tryWrite q 1
+      Tuple q rw ← liftEffect do
+        q ← BQS.new 1
+        rw ← BQS.tryWrite q 1
         pure (Tuple q rw)
       r ← BQ.read q
       Assert.assert "tryWrite should've succeeded" rw
