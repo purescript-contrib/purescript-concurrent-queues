@@ -3,32 +3,25 @@
 -- | This datastructure is useful in various consumer/producer situations.
 
 module Concurrent.BoundedQueue
-  ( BoundedQueue
-  , new
+  ( new
   , write
   , read
   , isEmpty
   , tryRead
   , tryWrite
+  , module Export
   ) where
 
 import Prelude
 
+import Concurrent.BoundedQueue.Internal (BoundedQueue(..))
+import Concurrent.BoundedQueue.Internal (BoundedQueue) as Export
 import Data.Array (unsafeIndex)
 import Data.Maybe (Maybe(..))
 import Data.Unfoldable (replicateA)
 import Effect.Aff (Aff)
-import Effect.Aff.AVar (AVar)
 import Effect.Aff.AVar as AVar
 import Partial.Unsafe (unsafePartial)
-
-newtype BoundedQueue a =
-  BoundedQueue
-    { size ∷ Int
-    , contents ∷ Array (AVar a)
-    , readPos ∷ AVar Int
-    , writePos ∷ AVar Int
-    }
 
 -- | Creates a new `BoundedQueue` with the given capacity,
 new ∷ ∀ a. Int → Aff (BoundedQueue a)
