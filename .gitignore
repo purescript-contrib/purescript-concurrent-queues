@@ -1,9 +1,16 @@
-/bower_components/
-/node_modules/
-/.pulp-cache/
-/output/
-/generated-docs/
-/.psc-package/
-/.psc*
-/.purs*
-/.psa*
+/.*
+!/.gitignore
+!/.github
+!/.travis.yml
+
+# Dependencies
+bower_components
+node_modules
+
+# Generated files
+output
+generated-docs
+
+# Lockfiles
+package-lock.json
+*.lock
