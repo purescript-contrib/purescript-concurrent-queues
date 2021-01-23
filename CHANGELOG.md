@@ -5,21 +5,24 @@ Notable changes to this project are documented in this file. The format is based
 ## [Unreleased]
 
 Breaking changes (😱!!!):
+- Added support for PureScript 0.14 and dropped support for all previous versions (#8)
 
 New features:
 
 Bugfixes:
 
 Other improvements:
+- Changed default branch to `main` from `master`
+- Updated to comply with Contributors library guidelines by adding new issue and pull request templates, updating documentation, and migrating to Spago for local development and CI
 
 ## [v1.1.0](https://github.com/purescript-contrib/purescript-concurrent-queues/releases/tag/v1.1.0) - 2018-10-22
 
-* Adds functions for interacting with BoundedQueues in Eff.
+- Added functions for interacting with BoundedQueues in Effect (#3)
 
 ## [v1.0.0](https://github.com/purescript-contrib/purescript-concurrent-queues/releases/tag/v1.0.0) - 2018-06-08
 
-* Updates for 0.12
+- Updated for PureScript 0.12
 
 ## [v0.1.0](https://github.com/purescript-contrib/purescript-concurrent-queues/releases/tag/v0.1.0) - 2018-02-01
 
-* Initial release
+- Initial release
