@@ -3,7 +3,7 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/slamdata/purescript-concurrent-queues.git"
+    "url": "https://github.com/purescript-contrib/purescript-concurrent-queues.git"
   },
   "ignore": [
     "**/.*",
