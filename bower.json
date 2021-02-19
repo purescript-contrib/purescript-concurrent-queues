@@ -18,6 +18,6 @@
   },
   "devDependencies": {
     "purescript-console": "^5.0.0",
-    "purescript-test-unit": null
+    "purescript-test-unit": "^14.0.0"
   }
 }
