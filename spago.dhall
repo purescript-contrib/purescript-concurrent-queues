@@ -1,6 +1,6 @@
 { name = "concurrent-queues"
 , dependencies =
-  [ "aff", "avar", "console", "effect", "psci-support", "test-unit" ]
+  [ "aff", "assert", "avar", "console", "effect", "psci-support" ]
 , packages = ./packages.dhall
 , sources = [ "src/**/*.purs", "test/**/*.purs" ]
 }
