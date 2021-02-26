@@ -24,6 +24,7 @@ Bugfixes:
 Other improvements:
 - Changed default branch to `main` from `master`
 - Updated to comply with Contributors library guidelines by adding new issue and pull request templates, updating documentation, and migrating to Spago for local development and CI
+- Replaced `test-unit` dependency with `assert` and `ReaderT` wrapper (#11)
 
 ## [v1.1.0](https://github.com/purescript-contrib/purescript-concurrent-queues/releases/tag/v1.1.0) - 2018-10-22
 
