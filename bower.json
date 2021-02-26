@@ -3,7 +3,7 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/slamdata/purescript-concurrent-queues.git"
+    "url": "https://github.com/purescript-contrib/purescript-concurrent-queues.git"
   },
   "ignore": [
     "**/.*",
@@ -12,11 +12,12 @@
     "output"
   ],
   "dependencies": {
-    "purescript-aff": "^5.0.0",
-    "purescript-avar": "^3.0.0"
+    "purescript-aff": "^6.0.0",
+    "purescript-avar": "^4.0.0",
+    "purescript-effect": "^3.0.0"
   },
   "devDependencies": {
-    "purescript-psci-support": "^4.0.0",
-    "purescript-test-unit": "^14.0.0"
+    "purescript-console": "^5.0.0",
+    "purescript-assert": "^5.0.0"
   }
 }
