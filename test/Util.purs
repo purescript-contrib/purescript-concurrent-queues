@@ -14,17 +14,17 @@ import Test.Assert (assertEqual)
 
 -- Provide similar API to purescript-test-unit to reduce code changes
 
-suite :: forall m. MonadReader Int m ⇒ MonadAff m ⇒ String -> m Unit -> m Unit
+suite :: forall m. MonadReader Int m => MonadAff m => String -> m Unit -> m Unit
 suite = test
 
-test :: forall m. MonadReader Int m ⇒ MonadAff m ⇒ String -> m Unit -> m Unit
+test :: forall m. MonadReader Int m => MonadAff m => String -> m Unit -> m Unit
 test msg runTest = do
   indentation <- ask
   let spacing = guard (indentation > 0) " "
   liftEffect $ log $ (power ">>" indentation) <> spacing <> msg
   local (_ + 1) runTest
 
-shouldEqual :: forall m a. MonadAff m ⇒ Eq a ⇒ Show a ⇒ a -> a -> m Unit
+shouldEqual :: forall m a. MonadAff m => Eq a => Show a => a -> a -> m Unit
 shouldEqual actual expected =
   liftEffect $ assertEqual { actual, expected }
 

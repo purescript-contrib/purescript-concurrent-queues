@@ -16,35 +16,35 @@ import Effect.Aff.AVar as AVar
 
 -- | An unbounded Queue fit for concurrent access.
 newtype Queue a = Queue
-  { readEnd ∷ AVar (Stream a)
-  , writeEnd ∷ AVar (Stream a)
+  { readEnd :: AVar (Stream a)
+  , writeEnd :: AVar (Stream a)
   }
 
 type Stream a = AVar (QItem a)
 data QItem a = QItem a (Stream a)
 
 -- | Creates a new `Queue`.
-new ∷ ∀ a. Aff (Queue a)
+new :: forall a. Aff (Queue a)
 new = do
-  hole ← AVar.empty
-  readEnd ← AVar.new hole
-  writeEnd ← AVar.new hole
+  hole <- AVar.empty
+  readEnd <- AVar.new hole
+  writeEnd <- AVar.new hole
   pure (Queue { readEnd, writeEnd })
 
 -- | Writes a new value into the queue
-write ∷ ∀ a. Queue a → a → Aff Unit
+write :: forall a. Queue a -> a -> Aff Unit
 write (Queue q) a = do
-  newHole ← AVar.empty
-  oldHole ← AVar.take q.writeEnd
+  newHole <- AVar.empty
+  oldHole <- AVar.take q.writeEnd
   AVar.put (QItem a newHole) oldHole
   AVar.put newHole q.writeEnd
 
 -- | Reads a value from the queue. Blocks if the queue is empty, and resumes
 -- | when it has been written to.
-read ∷ ∀ a. Queue a → Aff a
+read :: forall a. Queue a -> Aff a
 read (Queue q) = do
-  readEnd ← AVar.take q.readEnd
-  QItem a newRead ← AVar.read readEnd
+  readEnd <- AVar.take q.readEnd
+  QItem a newRead <- AVar.read readEnd
   AVar.put newRead q.readEnd
   pure a
 
@@ -53,13 +53,13 @@ read (Queue q) = do
 -- |
 -- | *CAREFUL!* This will block if other readers are blocked on the
 -- | queue.
-tryRead ∷ ∀ a. Queue a → Aff (Maybe a)
+tryRead :: forall a. Queue a -> Aff (Maybe a)
 tryRead (Queue q) = do
-  readEnd ← AVar.take q.readEnd
+  readEnd <- AVar.take q.readEnd
   AVar.tryRead readEnd >>= case _ of
-    Just (QItem a newRead) → do
+    Just (QItem a newRead) -> do
       AVar.put newRead q.readEnd
       pure (Just a)
-    Nothing → do
+    Nothing -> do
       AVar.put readEnd q.readEnd
       pure Nothing
