@@ -141,10 +141,7 @@ boundedQueueSyncSuite = do
         pure (Tuple r1 r2)
       r1 `shouldEqual` (Just 1)
       assert "Should've been Nothing" (isNothing r2)
-    test
-      ( "(Sync) tryRead does not block when there are consumers blocked on "
-          <> "the queue"
-      ) $ liftAff do
+    test "(Sync) tryRead does not block when there are consumers blocked on the queue" $ liftAff do
       q <- liftEffect (BQS.new 1)
       _ <- forkAff (BQ.read q)
       r <- race (delayMs 20) (liftEffect (BQS.tryRead q))
@@ -163,10 +160,7 @@ boundedQueueSyncSuite = do
       r <- BQ.read q
       assert "tryWrite should've succeeded" rw
       r `shouldEqual` 1
-    test
-      ( "(Sync) tryWrite does not block when there are writers blocked on " <>
-          "the queue"
-      ) $ liftAff do
+    test "(Sync) tryWrite does not block when there are writers blocked on the queue" $ liftAff do
       q <- liftEffect (BQS.new 1)
       BQ.write q 1
       _ <- forkAff (BQ.write q 2)
