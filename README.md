@@ -4,7 +4,6 @@
 [![Release](https://img.shields.io/github/release/purescript-contrib/purescript-concurrent-queues.svg)](https://github.com/purescript-contrib/purescript-concurrent-queues/releases)
 [![Pursuit](https://pursuit.purescript.org/packages/purescript-concurrent-queues/badge)](https://pursuit.purescript.org/packages/purescript-concurrent-queues)
 [![Maintainer: garyb](https://img.shields.io/badge/maintainer-garyb-teal.svg)](https://github.com/garyb)
-[![Maintainer: thomashoneyman](https://img.shields.io/badge/maintainer-thomashoneyman-teal.svg)](https://github.com/thomashoneyman)
 
 An unbounded and bounded queue for concurrent access.
 
