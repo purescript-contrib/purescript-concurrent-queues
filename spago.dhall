@@ -12,7 +12,6 @@
   , "maybe"
   , "partial"
   , "prelude"
-  , "psci-support"
   , "transformers"
   , "tuples"
   , "unfoldable"
